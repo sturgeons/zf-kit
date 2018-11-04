@@ -11,9 +11,14 @@
 use think\Route;
 
 Route::miss(function () {
-    return '';
+    return 'miss';
 });//跨域处理字段
 Route::get('/', 'api/v1.Index/index');
+//获取系统信息
+Route::get('/systemInfo', 'api/v1.Index/getSystemInfo');
+Route::get('/phpinfo', function (){
+    phpinfo();
+});
 //登录
 Route::post('/login', 'api/v1.User/login');
 //检查是否登录
@@ -104,9 +109,16 @@ Route::group('swsPKG', function () {
 });
 
 //方向盘发泡气味
-Route::group('foaming_voc', function () {
+Route::group('foamingVoc', function () {
     //获取检具清单
-    Route::post('/record','api/v1.VOC/recordCode');//录入条码
-    Route::get('/getPartNolistWait','api/v1.VOC/getPartNolistWait');//录入条码
-    Route::post('/output','api/v1.VOC/output');//录入条码
+    Route::post('/income','api/v1.VOC/income');//入库
+    Route::post('/moveOut','api/v1.VOC/moveOut');//出库
+    Route::get('/getConfig','api/v1.VOC/getConfig');//获取配置
+    Route::post('/updateConfig','api/v1.VOC/updateConfig');//更新配置
+    Route::post('/updatePartMatchTable','api/v1.VOC/updatePartNo');//更新零件号清单
+    Route::get('/getPartMatchTable','api/v1.VOC/getPartNo');//更新零件号清单
+    Route::get('/storagePartList','api/v1.VOC/getStoragePartNo');//获取等待条码列表
+
+    Route::get('/storageList','api/v1.VOC/getPartNolistWait');//获取等待条码列表
+    Route::post('/output','api/v1.VOC/output');//方向盘出库
 });

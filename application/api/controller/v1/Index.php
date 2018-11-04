@@ -3,6 +3,7 @@
 namespace app\api\controller\v1;
 
 use app\api\model\accSws;
+use app\api\model\foamingVOCModel\FoamingVocConfig;
 use think\Cookie;
 
 
@@ -21,8 +22,9 @@ class Index
 //        prinIPLlable("192.168.10.106",$data);
 //        return createPKGcode("78MK0");
 //        return preg_match("/P3.{4}$/","P30023402");
-        $AA='This is is y-server';
-        return ['info'=>$AA];
+
+        $AA = FoamingVocConfig::all();
+        return ['info' => $AA];
     }
 
 //    获取用户列表
@@ -35,5 +37,39 @@ class Index
     public function t1()
     {
         return 1;
+    }
+    //define('THINK_VERSION', '5.0.10');
+    //define('THINK_START_TIME', microtime(true));
+    //define('THINK_START_MEM', memory_get_usage());
+    //define('EXT', '.php');
+    //define('DS', DIRECTORY_SEPARATOR);
+    //defined('DS') or define('THINK_PATH', __DIR__ . DS);
+    //define('LIB_PATH', THINK_PATH . 'library' . DS);
+    //define('CORE_PATH', LIB_PATH . 'think' . DS);
+    //define('TRAIT_PATH', LIB_PATH . 'traits' . DS);
+    //defined('APP_PATH') or define('APP_PATH', dirname($_SERVER['SCRIPT_FILENAME']) . DS);
+    //defined('ROOT_PATH') or define('ROOT_PATH', dirname(realpath(APP_PATH)) . DS);
+    //defined('EXTEND_PATH') or define('EXTEND_PATH', ROOT_PATH . 'extend' . DS);
+    //defined('VENDOR_PATH') or define('VENDOR_PATH', ROOT_PATH . 'vendor' . DS);
+    //defined('RUNTIME_PATH') or define('RUNTIME_PATH', ROOT_PATH . 'runtime' . DS);
+    //defined('LOG_PATH') or define('LOG_PATH', RUNTIME_PATH . 'log' . DS);
+    //defined('CACHE_PATH') or define('CACHE_PATH', RUNTIME_PATH . 'cache' . DS);
+    //defined('TEMP_PATH') or define('TEMP_PATH', RUNTIME_PATH . 'temp' . DS);
+    //defined('CONF_PATH') or define('CONF_PATH', APP_PATH); // 配置文件目录
+    //defined('CONF_EXT') or define('CONF_EXT', EXT); // 配置文件后缀
+    //defined('ENV_PREFIX') or define('ENV_PREFIX', 'PHP_'); // 环境变量的配置前缀
+    public function getSystemInfo()
+    {
+        return [
+            'thinkphp 版本信息' => THINK_VERSION,
+            '开启时间'=>THINK_START_TIME,
+            'THINK_START_MEM'=>THINK_START_MEM,
+            'EXT'=>EXT,
+            'DS'=>DS,
+            'LIB_PATH'=>LIB_PATH,
+            'CORE_PATH'=>CORE_PATH,
+            'APP_PATH'=>APP_PATH
+
+        ];
     }
 }
